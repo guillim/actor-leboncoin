@@ -118,6 +118,7 @@ class CrawlerSetup {
         this.input.postNavigationHooks = false
         this.input.sessionPoolName = ""
         this.input.keepUrlFragments = false
+        this.input.requestQueueName = "pagination"
         
 
         // Validations
@@ -508,9 +509,10 @@ class CrawlerSetup {
     }
 
     async _handleLinks(page, request) {
+        log.debug(`this.requestQueue: ${this.requestQueue}`);
         if (!(this.input.linkSelector && this.requestQueue)) return;
         const start = process.hrtime();
-
+        log.debug(`linkselector: ${this.input.linkSelector}`);
         const currentDepth = request.userData[META_KEY].depth;
         const hasReachedMaxDepth = this.input.maxCrawlingDepth && currentDepth >= this.input.maxCrawlingDepth;
         if (hasReachedMaxDepth) {
