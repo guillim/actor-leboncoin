@@ -190,6 +190,10 @@ class CrawlerSetup {
         if (this.input.ignoreCorsAndCsp) args.push('--disable-web-security');
         if (this.isDevRun) args.push(`--remote-debugging-port=${CHROME_DEBUGGER_PORT}`);
 
+
+        // manually chosen options for simplification
+        this.input.maxRequestRetries = 3
+
         const options = {
             handlePageFunction: this._handlePageFunction.bind(this),
             requestList: this.requestList,
@@ -219,8 +223,8 @@ class CrawlerSetup {
                 ],
             },
             launchContext: {
-                useChrome: this.input.useChrome,
-                stealth: this.input.useStealth,
+                useChrome: true,
+                stealth: true,
                 launchOptions: {
                     ignoreHTTPSErrors: this.input.ignoreSslErrors,
                     defaultViewport: DEFAULT_VIEWPORT,

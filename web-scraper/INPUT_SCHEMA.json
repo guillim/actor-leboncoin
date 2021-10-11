@@ -128,19 +128,6 @@
             "prefill": [],
             "editor": "json"
         },
-        "useChrome": {
-            "title": "Use Chrome",
-            "type": "boolean",
-            "description": "If enabled, the scraper will use a real Chrome browser instead of Chromium bundled with Puppeteer. This option may help bypass certain anti-scraping protections, but might make the scraper unstable. Use at your own risk \uD83D\uDE42",
-            "default": false,
-            "groupCaption": "Browser masking"
-        },
-        "useStealth": {
-            "title": "Use stealth mode",
-            "type": "boolean",
-            "description": "If enabled, the scraper will apply various browser emulation techniques to match a real user's browser as closely as possible, in order to bypass around certain anti-scraping protections. This feature works best in conjunction with the <b>Use Chrome</b> option, but it also carries a risk of making the scraper unstable.",
-            "default": false
-        },
         "ignoreSslErrors": {
             "title": "Ignore SSL errors",
             "type": "boolean",
@@ -167,13 +154,6 @@
             "type": "boolean",
             "description": "If enabled, the scraper will download CSS files with stylesheets, as usual. Disabling this option may speed up the scrape, but certain websites could stop working correctly, and the live view will not look as cool.",
             "default": true
-        },
-        "maxRequestRetries": {
-            "title": "Max page retries",
-            "type": "integer",
-            "description": "The maximum number of times the scraper will retry to load each web page on error, in case of a page load error or an exception thrown by <b>Page function</b>.<br><br>If set to <code>0</code>, the page will be considered failed right after the first error.",
-            "minimum": 0,
-            "default": 3
         },
         "maxPagesPerCrawl": {
             "title": "Max pages per run",
