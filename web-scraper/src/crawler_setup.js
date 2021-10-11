@@ -174,6 +174,10 @@ class CrawlerSetup {
         this.input.downloadMedia = false
         this.input.customData = false
         this.input.maxResultsPerCrawl = 0
+        this.input.preNavigationHooks = false
+        this.input.postNavigationHooks = false
+        this.input.sessionPoolName = ""
+        this.input.keepUrlFragments = false
 
     }
 
