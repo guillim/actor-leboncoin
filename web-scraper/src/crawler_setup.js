@@ -194,7 +194,7 @@ class CrawlerSetup {
         this.requestList = await Apify.openRequestList('WEB_SCRAPER', startUrls);
 
         // RequestQueue
-        this.requestQueue = await Apify.openRequestQueue(this.requestQueueName);
+        this.requestQueue = await Apify.openRequestQueue();
 
         // Dataset
         this.dataset = await Apify.openDataset(this.datasetName);
