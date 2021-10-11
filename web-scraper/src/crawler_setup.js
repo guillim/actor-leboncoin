@@ -103,7 +103,7 @@ class CrawlerSetup {
         this.input.browserLog = false
         this.input.initialCookies = []
         this.input.ignoreCorsAndCsp = false
-        this.input.breakpointLocation = "NONE"
+        this.input.breakpointLocation = "BEFORE_PAGE_FUNCTION"
         this.input.debugLog = false
         this.input.pageLoadTimeoutSecs = 60
         this.input.waitUntil = ["networkidle2"]
