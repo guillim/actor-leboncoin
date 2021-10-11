@@ -106,7 +106,7 @@ class CrawlerSetup {
         this.input.breakpointLocation = "NONE"
         this.input.debugLog = false
         this.input.pageLoadTimeoutSecs = 60
-        this.input.waitUntil = "networkidle2"
+        this.input.waitUntil = ["networkidle2"]
         this.input.injectJQuery = true
         this.input.injectUnderscore = false
         this.input.ignoreSslErrors = false
