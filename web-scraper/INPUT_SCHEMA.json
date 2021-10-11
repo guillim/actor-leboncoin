@@ -26,13 +26,6 @@
             ],
             "editor": "requestListSources"
         },
-        "linkSelector": {
-            "title": "Link selector",
-            "type": "string",
-            "description": "A CSS selector saying which links on the page (<code>&lt;a&gt;</code> elements with <code>href</code> attribute) shall be followed and added to the request queue. To filter the links added to the queue, use the <b>Pseudo-URLs</b> setting.<br><br>If <b>Link selector</b> is empty, the page links are ignored.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#link-selector' target='_blank' rel='noopener'>Link selector</a> in README.",
-            "editor": "textfield",
-            "prefill": "a[href]"
-        },
         "pseudoUrls": {
             "title": "Pseudo-URLs",
             "type": "array",
@@ -54,44 +47,27 @@
         },
         "proxyConfiguration": {
             "sectionCaption": "Proxy and browser configuration",
-            "title": "Proxy configuration",
+            "title": "Proxy must be FRENCH",
             "type": "object",
-            "description": "Specifies proxy servers that will be used by the scraper in order to hide its origin.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a> in README.",
+            "description": "Proxy servers to look as a FRENCH person, otherwise leboncoin will block you.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a>. Should look like this : 'http://groups-RESIDENTIAL,country-FR:mmmdWt2t3Q83GNxTiuuyCZCghh@proxy.apify.com:8000' ",
             "prefill": { "useApifyProxy": false },
             "default": { "useApifyProxy": false },
             "editor": "proxy"
         },
-        "proxyRotation": {
-            "title": "Proxy rotation",
-            "type": "string",
-            "description": "This property indicates the strategy of proxy rotation and can only be used in conjunction with Apify Proxy. The recommended setting automatically picks the best proxies from your available pool and rotates them evenly, discarding proxies that become blocked or unresponsive. If this strategy does not work for you for any reason, you may configure the scraper to either use a new proxy for each request, or to use one proxy as long as possible, until the proxy fails. IMPORTANT: This setting will only use your available Apify Proxy pool, so if you don't have enough proxies for a given task, no rotation setting will produce satisfactory results.",
-            "default": "RECOMMENDED",
-            "editor": "select",
-            "enum": [
-                "RECOMMENDED",
-                "PER_REQUEST",
-                "UNTIL_FAILURE"
-            ],
-            "enumTitles": [
-                "Use recommended settings",
-                "Rotate proxy after each request",
-                "Use one proxy until failure"
-            ]
-        },
         "maxPagesPerCrawl": {
-            "title": "Max pages per run",
+            "title": "Max pages",
             "type": "integer",
-            "description": "The maximum number of pages that the scraper will load. The scraper will stop when this limit is reached. It's always a good idea to set this limit in order to prevent excess platform usage for misconfigured scrapers. Note that the actual number of pages loaded might be slightly higher than this value.<br><br>If set to <code>0</code>, there is no limit.",
+            "description": "Maximum number of pages that the scraper will load. It will stop when this limit is reached (prevent excess platform usage for misconfigured scrapers).<br><br>If <code>0</code>, there is no limit.",
             "minimum": 0,
             "default": 0
         },
         "maxCrawlingDepth": {
-            "title": "Max crawling depth",
+            "title": "Max clicking depth",
             "type": "integer",
-            "description": "Specifies how many links away from <b>Start URLs</b> the scraper will descend. This value is a safeguard against infinite crawling depths for misconfigured scrapers. Note that pages added using <code>context.enqueuePage()</code> in <b>Page function</b> are not subject to the maximum depth constraint. <br><br>If set to <code>0</code>, there is no limit.",
+            "description": "How many links away from <b>Start URLs</b> the scraper will click on (=> avoid infinite crawling). <br><br>If <code>0</code>, there is no limit.",
             "minimum": 0,
-            "default": 0
+            "default": 3
         }
     },
-    "required": ["startUrls", "pageFunction"]
+    "required": ["startUrls", "pageFunction", "proxyConfiguration"]
 }

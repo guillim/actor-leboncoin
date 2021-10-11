@@ -118,7 +118,8 @@ class CrawlerSetup {
         this.input.postNavigationHooks = false
         this.input.sessionPoolName = ""
         this.input.keepUrlFragments = false
-        
+        this.input.proxyRotation = "RECOMMENDED"
+        this.input.linkSelector = "a[title*='Page suivante']"
 
         // Validations
         this.input.pseudoUrls.forEach((purl) => {
