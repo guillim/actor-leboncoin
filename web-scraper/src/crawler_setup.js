@@ -96,6 +96,30 @@ class CrawlerSetup {
         this.input = input;
         this.env = Apify.getEnv();
 
+        // manually chosen options for simplification
+        this.input.maxRequestRetries = 3
+        this.input.maxConcurrency = 50
+        this.input.pageLoadTimeoutSecs = 60
+        this.input.browserLog = false
+        this.input.initialCookies = []
+        this.input.ignoreCorsAndCsp = false
+        this.input.breakpointLocation = "NONE"
+        this.input.debugLog = false
+        this.input.pageLoadTimeoutSecs = 60
+        this.input.waitUntil = "networkidle2"
+        this.input.injectJQuery = true
+        this.input.injectUnderscore = false
+        this.input.ignoreSslErrors = false
+        this.input.downloadCss = false
+        this.input.downloadMedia = false
+        this.input.customData = false
+        this.input.maxResultsPerCrawl = 0
+        this.input.preNavigationHooks = false
+        this.input.postNavigationHooks = false
+        this.input.sessionPoolName = ""
+        this.input.keepUrlFragments = false
+        
+
         // Validations
         this.input.pseudoUrls.forEach((purl) => {
             if (!tools.isPlainObject(purl)) throw new Error('The pseudoUrls Array must only contain Objects.');
@@ -156,28 +180,6 @@ class CrawlerSetup {
         this.keyValueStore = null;
         this.initPromise = this._initializeAsync();
 
-        // manually chosen options for simplification
-        this.input.maxRequestRetries = 3
-        this.input.maxConcurrency = 50
-        this.input.pageLoadTimeoutSecs = 60
-        this.input.browserLog = false
-        this.input.initialCookies = []
-        this.input.ignoreCorsAndCsp = false
-        this.input.breakpointLocation = "NONE"
-        this.input.debugLog = false
-        this.input.pageLoadTimeoutSecs = 60
-        this.input.waitUntil = "networkidle2"
-        this.input.injectJQuery = true
-        this.input.injectUnderscore = false
-        this.input.ignoreSslErrors = false
-        this.input.downloadCss = false
-        this.input.downloadMedia = false
-        this.input.customData = false
-        this.input.maxResultsPerCrawl = 0
-        this.input.preNavigationHooks = false
-        this.input.postNavigationHooks = false
-        this.input.sessionPoolName = ""
-        this.input.keepUrlFragments = false
 
     }
 
