@@ -4,8 +4,8 @@
   "description": "Crawls leboncoin.fr from the search you specify, until the number of pages you want it to stop",
   "main": "main.js",
   "dependencies": {
-    "@apify/scraper-tools": "^0.4.0",
-    "apify": "^2.2.0",
+    "@apify/scraper-tools": "^0.4.4",
+    "apify": "^2.2.1",
     "content-type": "^1.0.4",
     "devtools-server": "^0.0.2",
     "puppeteer": "*"
