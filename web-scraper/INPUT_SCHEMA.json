@@ -10,6 +10,7 @@
             "type": "array",
             "description": "URLs to begin scraping. <br><br>For details, see <a href='https://apify.com/apify/web-scraper#start-urls' target='_blank' rel='noopener'>Start URLs</a>",
             "prefill": [
+                { "url": "https://www.leboncoin.fr" },
                 { "url": "https://www.leboncoin.fr/recherche?category=21&text=mer&price=17-50" }
             ],
             "editor": "requestListSources"
@@ -26,8 +27,8 @@
             "title": "Choose 'Custom proxies' and get FRENCH ones",
             "type": "object",
             "description": "Proxy servers to have a FRENCH IP, otherwise leboncoin will block you.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a>. <br><br> Should look like this : 'http://groups-RESIDENTIAL,country-FR:balbalbalbaGNyTidoCZCfqg@proxy.apify.com:8000' ",
-            "prefill": { "useApifyProxy": false },
-            "default": { "useApifyProxy": false },
+            "prefill": { "useApifyProxy": true },
+            "default": { "useApifyProxy": true },
             "editor": "proxy"
         },
         "pseudoUrls": {
