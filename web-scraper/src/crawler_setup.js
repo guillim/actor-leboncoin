@@ -77,6 +77,7 @@ const { utils: { log, puppeteer } } = Apify;
 class CrawlerSetup {
     /* eslint-disable class-methods-use-this */
     constructor(input) {
+        log.info(JSON.stringify(input.startUrls))
         this.name = 'Web Scraper';
         // Set log level early to prevent missed messages.
         if (input.debugLog) log.setLevel(log.LEVELS.DEBUG);
@@ -198,7 +199,7 @@ class CrawlerSetup {
         //     return req;
         // });
         log.error(`---------> this.input.startUrls ${this.input.startUrls.length}`);
-        log.info(this.input.startUrls)
+        log.info(JSON.stringify(this.input.startUrls))
         this.requestList = await Apify.openRequestList('WEB_SCRAPER', this.input.startUrls);
 
         // RequestQueue cannot be null or "" so we removed this.requestQueueName as argument
