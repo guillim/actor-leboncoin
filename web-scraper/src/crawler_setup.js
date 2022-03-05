@@ -197,6 +197,8 @@ class CrawlerSetup {
         //     req.keepUrlFragment = this.input.keepUrlFragments;
         //     return req;
         // });
+        log.error(`---------> this.input.startUrls ${this.input.startUrls.length}`);
+        log.info(this.input.startUrls)
         this.requestList = await Apify.openRequestList('WEB_SCRAPER', this.input.startUrls);
 
         // RequestQueue cannot be null or "" so we removed this.requestQueueName as argument
