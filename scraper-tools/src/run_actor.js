@@ -7,6 +7,7 @@ module.exports.runActor = (CrawlerSetup) => {
         log.debug('Reading INPUT.');
         const input = await Apify.getInput();
         if (!input) throw new Error('INPUT cannot be empty!');
+        log.info('JSON.stringify(input)');
         log.info(JSON.stringify(input));
         // Get crawler setup and startup options.
         const setup = new CrawlerSetup(input);
