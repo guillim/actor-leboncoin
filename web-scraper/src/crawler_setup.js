@@ -77,6 +77,7 @@ const { utils: { log, puppeteer } } = Apify;
 class CrawlerSetup {
     /* eslint-disable class-methods-use-this */
     constructor(input) {
+        log.info(JSON.stringify(input.startUrls))
         this.name = 'Web Scraper';
         // Set log level early to prevent missed messages.
         if (input.debugLog) log.setLevel(log.LEVELS.DEBUG);
@@ -122,6 +123,10 @@ class CrawlerSetup {
         this.input.linkSelector = "a[title*='Page suivante']"
         // after 10hours, the crawler automatically stops to prevent infinite crawling
         this.input.pageFunctionTimeoutSecs = 36000
+        this.input.proxyConfiguration = { 
+            groups : ["RESIDENTIAL"],
+            countryCode : "FR"
+        }
 
         // Validations
         this.input.pseudoUrls.forEach((purl) => {
@@ -188,12 +193,14 @@ class CrawlerSetup {
 
     async _initializeAsync() {
         // RequestList
-        const startUrls = this.input.startUrls.map((req) => {
-            req.useExtendedUniqueKey = true;
-            req.keepUrlFragment = this.input.keepUrlFragments;
-            return req;
-        });
-        this.requestList = await Apify.openRequestList('WEB_SCRAPER', startUrls);
+        // const startUrls = this.input.startUrls.map((req) => {
+        //     req.useExtendedUniqueKey = true;
+        //     req.keepUrlFragment = this.input.keepUrlFragments;
+        //     return req;
+        // });
+        log.error(`---------> this.input.startUrls ${this.input.startUrls.length}`);
+        log.info(JSON.stringify(this.input.startUrls))
+        this.requestList = await Apify.openRequestList('WEB_SCRAPER', this.input.startUrls);
 
         // RequestQueue cannot be null or "" so we removed this.requestQueueName as argument
         this.requestQueue = await Apify.openRequestQueue();
@@ -232,6 +239,7 @@ class CrawlerSetup {
             maxRequestsPerCrawl: this.input.maxPagesPerCrawl,
             proxyConfiguration: await Apify.createProxyConfiguration(this.input.proxyConfiguration),
             browserPoolOptions: {
+                useFingerprints: true,
                 preLaunchHooks: [
                     async () => {
                         if (!this.isDevRun) {

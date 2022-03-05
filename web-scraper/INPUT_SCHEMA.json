@@ -1,34 +1,24 @@
 {
     "title": "Web Scraper Input",
     "type": "object",
-    "description": "Web Scraper loads <b>Start URLs</b> in the Chrome browser and executes <b>Page function</b> on each page to extract data from it. To follow links and scrape additional pages, set <b>Link selector</b> with <b>Pseudo-URLs</b> to specify which links to follow. Alternatively, you can manually enqueue new links in <b>Page function</b>. For details, see actor's <a href='https://apify.com/apify/web-scraper' target='_blank' rel='noopener'>README</a> or <a href='https://apify.com/docs/scraping/tutorial/introduction' target='_blank' rel='noopener'>Web scraping tutorial</a> in the Apify documentation.",
+    "description": "This scraper loads <b>Start URLs</b> in a Chrome browser and executes <b>Page function</b> on each page to extract data from it.",
     "schemaVersion": 1,
     "properties": {
         "startUrls": {
-            "sectionCaption": "Basic configuration",
+            "sectionCaption": "Basic",
             "title": "Start URLs",
             "type": "array",
             "description": "URLs to begin scraping. <br><br>For details, see <a href='https://apify.com/apify/web-scraper#start-urls' target='_blank' rel='noopener'>Start URLs</a>",
-            "prefill": [
-                { "url": "https://www.leboncoin.fr/recherche?category=21&text=mer&price=17-50" }
-            ],
+            "prefill": ["https://www.leboncoin.fr","https://www.leboncoin.fr/recherche?category=21&text=mer&price=17-50"],
+            "default": ["https://www.leboncoin.fr"],
             "editor": "requestListSources"
         },
         "maxCrawlingDepth": {
-            "title": "Page suivante: how many times ?",
+            "title": "Click on 'Page suivante': how many times ?",
             "type": "integer",
-            "description": "How many times we click on 'next page'. <code>0</code> is until the end of leboncoin pagination.",
+            "description": "How many times we click on 'next page'. <code>0</code> is no limit.",
             "minimum": 0,
-            "default": 3
-        },
-        "proxyConfiguration": {
-            "sectionCaption": "Proxy configuration",
-            "title": "Choose 'Custom proxies' and get FRENCH ones",
-            "type": "object",
-            "description": "Proxy servers to have a FRENCH IP, otherwise leboncoin will block you.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a>. <br><br> Should look like this : 'http://groups-RESIDENTIAL,country-FR:balbalbalbaGNyTidoCZCfqg@proxy.apify.com:8000' ",
-            "prefill": { "useApifyProxy": false },
-            "default": { "useApifyProxy": false },
-            "editor": "proxy"
+            "default": 4
         },
         "pseudoUrls": {
             "sectionCaption": "Advanced configuration",
@@ -60,7 +50,7 @@
             "title": "Debugging",
             "type": "string",
             "description": "Indicates the scraper's mode of operation. In DEVELOPMENT mode, the scraper ignores page timeouts, doesn't use sessionPool, opens pages one by one and enables debugging via Chrome DevTools.  Open the live view tab or the container URL to access the debugger. Further debugging options can be configured in the Advanced configuration section. PRODUCTION mode disables debugging and enables timeouts and concurrency. <br><br>For details, see <a href='https://apify.com/apify/web-scraper#run-mode' target='_blank' rel='noopener'>Run mode</a> in README.",
-            "default": "PRODUCTION",
+            "default": "DEVELOPMENT",
             "prefill": "DEVELOPMENT",
             "editor": "select",
             "enum": [
