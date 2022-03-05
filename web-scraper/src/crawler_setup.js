@@ -192,12 +192,12 @@ class CrawlerSetup {
 
     async _initializeAsync() {
         // RequestList
-        const startUrls = this.input.startUrls.map((req) => {
-            req.useExtendedUniqueKey = true;
-            req.keepUrlFragment = this.input.keepUrlFragments;
-            return req;
-        });
-        this.requestList = await Apify.openRequestList('WEB_SCRAPER', startUrls);
+        // const startUrls = this.input.startUrls.map((req) => {
+        //     req.useExtendedUniqueKey = true;
+        //     req.keepUrlFragment = this.input.keepUrlFragments;
+        //     return req;
+        // });
+        this.requestList = await Apify.openRequestList('WEB_SCRAPER', this.input.startUrls);
 
         // RequestQueue cannot be null or "" so we removed this.requestQueueName as argument
         this.requestQueue = await Apify.openRequestQueue();
