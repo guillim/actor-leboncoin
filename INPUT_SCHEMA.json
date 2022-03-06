@@ -37,6 +37,14 @@
             "prefill": "// see https://apify.com/apify/web-scraper#page-function \nasync function pageFunction(context) {\n    const $ = context.jQuery;\n    const pageTitle = $('title').first().text();\n    let data = { url: context.request.url }\n\n    if(context.request.userData && context.request.userData.type === 'from_pagination'){        \n        data.img = $(' [data-qa-id=adview_spotlight_container] img').attr('src')\n        data.title = $('[data-qa-id=adview_title]').text()\n        data.price = $('[data-qa-id=adview_price]:eq(0)').text()\n        data.date = $('[data-qa-id=adview_date]').text()\n        data.description = $('[data-qa-id=adview_description_container]').text()\n        data.link = context.request.userData.link\n        data.type = 'product'\n    }else{\n        let items = []\n        $('[data-qa-id=aditem_container]').map( function(i){\n            let obj = {}\n            obj.link = \"https://www.leboncoin.fr\" + $(this).attr('href')\n            obj.img = $(this).find('img').attr('src')\n            obj.title = $(this).find('[data-qa-id=aditem_title]').text()\n            obj.price = $(this).find('[data-qa-id=aditem_price]').text()\n            obj.type = 'from_pagination'\n            items.push( JSON.parse(JSON.stringify(obj)) )\n        })\n\n        items.forEach(async item => {\n            await context.enqueueRequest({ url: item.link, userData: item }, { forefront: true });\n        })\n        // uncomment this to see while browsing what items you see in the search\n        // data.items = items\n    }\n\n    context.log.info(`URL: ${context.request.url}, TITLE: ${pageTitle}, Nbr: ${context.request.userData}`);\n    return data;\n}",
             "editor": "javascript"            
         },
+        "proxyConfiguration": {
+            "title": "Avoid anti-bot detection with Proxy",
+            "type": "object",
+            "description": "Leboncoin may block you, so you better use proxies.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a>.",
+            "prefill": { "useApifyProxy": true },
+            "default": { "useApifyProxy": true },
+            "editor": "proxy"
+        },
         "pseudoUrls": {
             "title": "Respect URL pattern",
             "type": "array",

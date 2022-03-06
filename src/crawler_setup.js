@@ -123,10 +123,10 @@ class CrawlerSetup {
         // after 10hours, the crawler automatically stops to prevent infinite crawling
         this.input.pageFunctionTimeoutSecs = 36000
 
-        this.input.proxyConfiguration = { 
-            groups : ["RESIDENTIAL"],
-            countryCode : "FR"
-        };
+        // this.input.proxyConfiguration = { 
+        //     groups : ["RESIDENTIAL"],
+        //     countryCode : "FR"
+        // };
 
         // Validations
         this.input.pseudoUrls.forEach((purl) => {
