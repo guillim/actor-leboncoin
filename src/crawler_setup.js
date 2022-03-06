@@ -232,6 +232,7 @@ class CrawlerSetup {
             maxRequestsPerCrawl: this.input.maxPagesPerCrawl,
             proxyConfiguration: await Apify.createProxyConfiguration(this.input.proxyConfiguration),
             browserPoolOptions: {
+                useFingerprints: true,
                 preLaunchHooks: [
                     async () => {
                         if (!this.isDevRun) {
