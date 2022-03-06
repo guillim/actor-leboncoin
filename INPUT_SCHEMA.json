@@ -38,7 +38,6 @@
             "type": "object",
             "description": "Leboncoin may block you.<br><br>For details, see <a href='https://apify.com/apify/web-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a>. <br><br> Should look like this : 'http://groups-RESIDENTIAL,country-FR:balbalbalbaGNyTidoCZCfqg@proxy.apify.com:8000' ",
             "prefill": { "useApifyProxy": true },
-            "default": { "useApifyProxy": true },
             "editor": "proxy"
         },
         "maxPagesPerCrawl": {
@@ -68,5 +67,5 @@
             ]
         }
     },
-    "required": ["startUrls", "pageFunction", "proxyConfiguration"]
+    "required": ["startUrls", "pageFunction"]
 }
