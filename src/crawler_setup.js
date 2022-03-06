@@ -238,20 +238,20 @@ class CrawlerSetup {
             proxyConfiguration: await Apify.createProxyConfiguration(this.input.proxyConfiguration),
             browserPoolOptions: {
                 useFingerprints: true,
-                preLaunchHooks: [
-                    async () => {
-                        if (!this.isDevRun) {
-                            return;
-                        }
+                // preLaunchHooks: [
+                //     async () => {
+                //         if (!this.isDevRun) {
+                //             return;
+                //         }
 
-                        const devToolsServer = new DevToolsServer({
-                            containerHost: new URL(process.env.APIFY_CONTAINER_URL).host,
-                            devToolsServerPort: process.env.APIFY_CONTAINER_PORT,
-                            chromeRemoteDebuggingPort: CHROME_DEBUGGER_PORT,
-                        });
-                        await devToolsServer.start();
-                    },
-                ],
+                //         const devToolsServer = new DevToolsServer({
+                //             containerHost: new URL(process.env.APIFY_CONTAINER_URL).host,
+                //             devToolsServerPort: process.env.APIFY_CONTAINER_PORT,
+                //             chromeRemoteDebuggingPort: CHROME_DEBUGGER_PORT,
+                //         });
+                //         await devToolsServer.start();
+                //     },
+                // ],
             },
             launchContext: {
                 useChrome: true,
@@ -262,8 +262,10 @@ class CrawlerSetup {
                     args,
                 },
             },
-            useSessionPool: !this.isDevRun,
-            persistCookiesPerSession: !this.isDevRun,
+            useSessionPool: true,
+            // useSessionPool: !this.isDevRun,
+            persistCookiesPerSession: true,
+            // persistCookiesPerSession: !this.isDevRun,
             sessionPoolOptions: {
                 persistStateKeyValueStoreId: this.input.sessionPoolName ? SESSION_STORE_NAME : undefined,
                 persistStateKey: this.input.sessionPoolName,
